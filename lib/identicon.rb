@@ -1,14 +1,32 @@
 require 'digest'
 require 'chunky_png'
 
+# Generates GitHub-like identicons using MD5 hashes
 class Identicon
 	class << self 
+		# Generates a identicon using the data:image protocol.
+		# Usefull for web applications.
+		#
+		# === Parameters
+		# * data 	= The data that will be converted to a identicon
+		# * size    = (Optional) The image size. Defaults to 420px
+		# * background = (Optional) The background color to be used in a rgb array. ([255, 255, 255])
+
 		def data_url_for(data, size = 420, background = nil)
 			img = self.new data, size
 			img.background = background unless background.nil?
 			img.generate_image
 			img.to_data_url
 		end
+
+		# Generates a identicon and stores it in a file
+		# Usefull for web applications.
+		#
+		# === Parameters
+		# * data 	= The data that will be converted to a identicon
+		# * path    = The path where the file will be stored
+		# * size    = (Optional) The image size. Defaults to 420px
+		# * background = (Optional) The background color to be used in a rgb array. ([255, 255, 255])
 		def file_for(data, path, size = 420, background = nil)
 			img = self.new data, size
 			img.background = background unless background.nil?
@@ -38,6 +56,11 @@ class Identicon
 		:"9" => [188, 110, 93]
 	}
 
+	# The +new+ method initializes a new Identicon instance
+	#
+	# === Parameters
+	# * data 	= The data that will be converted to a identicon
+	# * size    = The image size
 	def initialize(data, size)
 		@hash = Digest::MD5.hexdigest(data.to_s)
 		@chars = @hash.scan(CHARS_REGEX)
@@ -94,6 +117,7 @@ class Identicon
 	end
 
 	public
+	# Process the specified data and generates the result
 	def generate_image
 		pImage = ChunkyPNG::Image.new(@image_size, @image_size, ChunkyPNG::Color::rgb(@background[0], @background[1], @background[2]))
 		@image = ChunkyPNG::Image.new(@size, @size, ChunkyPNG::Color::rgb(@background[0], @background[1], @background[2]))
@@ -109,10 +133,14 @@ class Identicon
 		@image.compose!(pImage, @pixel_ratio / 2, @pixel_ratio / 2)
 	end
 
+	# Exports the result to a data:image format. 
 	def to_data_url
 		@image.to_data_url
 	end
 
+	# Exports the result to a file
+	# === Parameters
+	# * path	= Path where the image will be stored
 	def save(path)
 		@image.save(path)
 	end
