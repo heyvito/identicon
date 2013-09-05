@@ -29,7 +29,11 @@ and hitting `return` with your favourite finger.
 
 ## Using
 
-You can use it through two methods: `data_url_for` or `file_for`. Simple like that.
+Require it as always
+
+	require 'identicon'
+
+Now you can use it through two methods: `data_url_for` or `file_for`. Simple like that.
 
 ## `data_url_for`
 This generates a data-url, so you can use it immediately, check it out:

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
 	s.description		= "A simple github-like identicons generator."
 	s.summary			= "A simple github-like identicons generator."
-	s.homepage			= "http://github.com/victorgama/identicons"
+	s.homepage			= "http://github.com/victorgama/identicon"
 	s.license			= "MIT"
 
 	s.files				= `git ls-files`.split($/)
