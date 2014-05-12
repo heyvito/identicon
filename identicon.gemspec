@@ -16,5 +16,5 @@ Gem::Specification.new do |s|
 	s.executables		= s.files.grep(%r{^bin/}) { |file| File.basename(file) }
 	s.require_paths	= ["lib"]
 
-	s.add_dependency	"chunky_png", "~> 1.2.8"
+	s.add_dependency	"chunky_png"
 end
