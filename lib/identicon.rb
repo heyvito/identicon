@@ -3,9 +3,9 @@ require 'chunky_png'
 
 # Generates GitHub-like identicons using MD5 hashes
 class Identicon
-  
+
 	attr_accessor :size, :data, :background
-  
+
 	CHARS_REGEX = /(\w)(\w)/
 
 	COLORS = {
@@ -26,15 +26,15 @@ class Identicon
 		:"8" => [71, 194, 197],
 		:"9" => [188, 110, 93]
 	}
-  
-	class << self 
+
+	class << self
 		# Generates a identicon using the data:image protocol.
 		# Usefull for web applications.
 		#
 		# === Parameters
 		#   data 	      - The data that will be converted to a identicon
 		#   size        - (Optional) The image size. Defaults to 420px
-		#   background  - (Optional) The background color to be used in a rgb array. 
+		#   background  - (Optional) The background color to be used in a rgb array.
     #                 Ex: [255, 255, 255]
 		def data_url_for(data, size = 420, background = nil)
 			img = self.new(data, size)
@@ -51,7 +51,7 @@ class Identicon
 		#   data 	      - The data that will be converted to a identicon
 		#   path        - The path where the file will be stored
 		#   size        - (Optional) The image size. Defaults to 420px
-		#   background  - (Optional) The background color to be used in a rgb array. 
+		#   background  - (Optional) The background color to be used in a rgb array.
     #                 Ex: [255, 255, 255]
     #
     # Returns nothing
@@ -62,8 +62,8 @@ class Identicon
 			img.save(path)
 		end
 	end
-  
-  
+
+
 	# Constructs a new Identicon instance
 	#
 	# === Parameters
@@ -107,11 +107,11 @@ class Identicon
 				colValue = lineValue[colKey]
 				if(colValue)
 					pImage.rect(
-            colKey * @pixel_ratio, 
-            lineKey * @pixel_ratio, 
-            (colKey + 1) * @pixel_ratio, 
-            (lineKey + 1) * @pixel_ratio, 
-            ChunkyPNG::Color::TRANSPARENT, 
+            colKey * @pixel_ratio,
+            lineKey * @pixel_ratio,
+            (colKey + 1) * @pixel_ratio,
+            (lineKey + 1) * @pixel_ratio,
+            ChunkyPNG::Color::TRANSPARENT,
             ChunkyPNG::Color.rgb(@color[0], @color[1], @color[2])
           )
 				end
@@ -121,7 +121,7 @@ class Identicon
 	end
 
 
-	# Exports the result to a data:image format. 
+	# Exports the result to a data:image format.
 	def to_data_url
 		@image.to_data_url
 	end
@@ -145,10 +145,10 @@ class Identicon
 			sqIndex = (i / 3).round
 			@square_array[i/3] = [] unless @square_array.member? sqIndex
 
-			if(i % 3 == 0) 
+			if(i % 3 == 0)
 				@square_array[i/3][0] = h_to_b char
 				@square_array[i/3][4] = h_to_b char
-			elsif(i % 3 == 1) 
+			elsif(i % 3 == 1)
 				@square_array[i/3][1] = h_to_b char
 				@square_array[i/3][3] = h_to_b char
 			else

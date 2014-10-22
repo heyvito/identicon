@@ -1,5 +1,6 @@
 Identicon
 =========
+[![Dependency Status](https://gemnasium.com/victorgama/identicon.svg)](https://gemnasium.com/victorgama/identicon)
 ![](https://dl.dropboxusercontent.com/u/262919/Identicons/1.png)
 ![](https://dl.dropboxusercontent.com/u/262919/Identicons/2.png)
 ![](https://dl.dropboxusercontent.com/u/262919/Identicons/3.png)
@@ -50,7 +51,7 @@ This creates a 128x128px image, with a nice white background.
 
 *But Vito, I want to save it as a file.*
 
-No probs! 
+No probs!
 
 # `file_for`
 This generates and writes the result to a file. It's as easy as just making a data-url. Check it out:
