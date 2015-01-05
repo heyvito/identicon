@@ -13,9 +13,9 @@ A Ruby library that generates GitHub-like [identicons](https://github.com/blog/1
 That's easy! Use [RubyGems](http://rubygems.org)!
 
 Insert `Identicon` on your application's Gemfile:
-
+```ruby
     gem 'identicon'
-
+```
 and run
 
     $ bundle
@@ -32,20 +32,20 @@ and hitting `return` with your favourite finger.
 ## Using
 
 Require it as always
-
+```ruby
     require 'identicon'
-
+```
 Now you can use it through two methods: `data_url_for` or `file_for`. Simple like that.
 
 ## `data_url_for`
 This generates a data-url, so you can use it immediately, check it out:
-
+```ruby
     Identicon.data_url_for "Whatever you want!"
-
+```
 You can also specify a image size and a background color:
-
+```ruby
     Identicon.data_url_for "Whatever you want!", 128, [255, 255, 255]
-
+```
 This creates a 128x128px image, with a nice white background.
 
 ---------
@@ -55,13 +55,13 @@ This creates a 128x128px image, with a nice white background.
 
 # `file_for`
 This generates and writes the result to a file. It's as easy as just making a data-url. Check it out:
-
+```ruby
     Identicon.file_for "User's email? Username? Telephone?", "/path/to/the/image"
-
-And, as you may guess, it also takes that optional parameters.
-
+```
+And, as you may guess, it also takes those optional parameters.
+```ruby
     Identicon.file_for "User's email? Username? Telephone?", "/path/to/the/image", 128, [255, 255, 255]
-
+```
 ----------
 
 Pull requests are welcome!
