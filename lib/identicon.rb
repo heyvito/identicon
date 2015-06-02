@@ -60,6 +60,24 @@ class Identicon
             img.generate_image
             img.save(path)
         end
+
+
+
+        # Generates a identicon and returns the binary data
+        #
+        # === Parameters
+        #   data          - The data that will be converted to a identicon
+        #   size        - (Optional) The image size. Defaults to 420px
+        #   background  - (Optional) The background color to be used in a rgb array.
+        #                 Ex: [255, 255, 255]
+        #
+        # Returns binary_data
+        def blob_for(data, size = 420, background = nil)
+            img = self.new(data, size)
+            img.background = background unless background.nil?
+            img.generate_image
+            img.to_blob
+        end
     end
 
 
@@ -131,6 +149,12 @@ class Identicon
     # path - Path where the image will be stored
     def save(path)
         @image.save(path)
+    end
+
+
+    # Exports the result in binary format
+    def to_blob
+        @image.to_blob
     end
 
 
