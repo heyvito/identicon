@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
     s.name                  = "identicon"
-    s.version               = "0.0.3"
+    s.version               = "0.0.4"
     s.authors               = ["Victor Gama"]
     s.email                 = ["hey@vito.io"]
 
