@@ -2,76 +2,67 @@ Identicon
 =========
 [![Dependency Status](https://gemnasium.com/victorgama/identicon.svg)](https://gemnasium.com/victorgama/identicon)
 
-![](https://dl.dropboxusercontent.com/u/262919/Identicons/1.png)
-![](https://dl.dropboxusercontent.com/u/262919/Identicons/2.png)
-![](https://dl.dropboxusercontent.com/u/262919/Identicons/3.png)
+![](http://i.imgur.com/eQeMxCb.png)
+![](http://i.imgur.com/8b8Oezd.png)
+![](http://i.imgur.com/yaZd7LR.png)
 
 A Ruby library that generates GitHub-like [identicons](https://github.com/blog/1586-identicons)
 
-## Installing
+## Installation
 
-That's easy! Use [RubyGems](http://rubygems.org)!
+Add it to your application's `Gemfile`:
 
-Insert `Identicon` on your application's Gemfile:
 ```ruby
-    gem 'identicon'
+gem 'identicon'
 ```
+
 and run
 
     $ bundle
 
-or manually install it typing
+or manually install through the command-line:
 
     $ gem install identicon
 
-and hitting `return` with your favourite finger.
+## Usage
 
-
-
-
-## Using
-
-Require it as always
+Require it
 ```ruby
-    require 'identicon'
+require 'identicon'
 ```
-Now you can use it through two methods: `data_url_for` or `file_for`. Simple like that.
+
+And use `data_url_for` or `file_for`, as explained below:
 
 ## `data_url_for`
 This generates a data-url, so you can use it immediately, check it out:
 ```ruby
-    Identicon.data_url_for "Whatever you want!"
+Identicon.data_url_for "Whatever you want!"
 ```
 You can also specify a image size and a background color:
 ```ruby
-    Identicon.data_url_for "Whatever you want!", 128, [255, 255, 255]
+Identicon.data_url_for "Whatever you want!", 128, [255, 255, 255]
 ```
 This creates a 128x128px image, with a nice white background.
-
----------
-
-    – But Vito, I want to save it as a file.
-    – No problemo! fil_for is the way to go.
 
 # `file_for`
 This generates and writes the result to a file. It's as easy as just making a data-url. Check it out:
 ```ruby
-    Identicon.file_for "User's email? Username? Telephone?", "/path/to/the/image"
+Identicon.file_for "User's email? Username? Telephone?", "/path/to/the/image"
 ```
-And, as you may guess, it also takes those optional parameters.
+And, as you may guess, it also accepts the aforementioned parameters:
 ```ruby
-    Identicon.file_for "User's email? Username? Telephone?", "/path/to/the/image", 128, [255, 255, 255]
+Identicon.file_for "User's email? Username? Telephone?", "/path/to/the/image", 128, [255, 255, 255]
 ```
 ----------
 
 Pull requests are welcome!
 
-----------
+## License
 
 ```
 The MIT License (MIT)
 
-Copyright (c) 2014-2015 Victor Gama
+Copyright (c) 2014-2017 Victor Gama
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
