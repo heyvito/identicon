@@ -84,11 +84,11 @@ class Identicon
   def initialize(data, size)
     @hash = Digest::MD5.hexdigest(data.to_s)
     @chars = @hash.scan(CHARS_REGEX)
-    @color = [0, 0, 0]
+    @color = COLORS[@hash.chars[11].to_sym]
     @size = size
     @pixel_ratio = (size / 6).round
     @image_size = @size - (@pixel_ratio / 1.5).round
-    @square_array = Hash.new { Hash.new(false) }
+    @square_array = Hash.new { |h, k| h[k] = Array.new(5, false) }
     @background = [240, 240, 240]
     convert_hash
   end
@@ -159,27 +159,23 @@ class Identicon
   private
 
   def convert_hash
-    chars = @chars.map { |p| p[1] }
-    chars.each_index do |i|
-      char = chars[i]
-      sq_index = (i / 3).round
-      @square_array[i / 3] = [] unless @square_array.member? sq_index
-      if i % 3 == 0
-        @square_array[i / 3][0] = h_to_b char
-        @square_array[i / 3][4] = h_to_b char
-      elsif i % 3 == 1
-        @square_array[i / 3][1] = h_to_b char
-        @square_array[i / 3][3] = h_to_b char
-      else
-        @square_array[i / 3][2] = h_to_b char
-      end
+    outer_inner_middle_columns = @chars.map { |p| p[1].ord.even? }.each_slice(3).to_a
+    outer_inner_middle_columns.each_with_index do |arr, row|
+      paint_two_outer_columns?(arr[0]         , row) 
+      paint_two_inner_columns?(arr[1] || false, row)
+      paint_middle_column?(    arr[2] || false, row)
     end
-    color = :a
-    0.upto(5) { color = chars.shift.to_sym }
-    @color = COLORS[color]
   end
 
-  def h_to_b(value)
-    value.bytes.first.even?
+  def paint_two_outer_columns?(boolean, row)
+    @square_array[row][0] = boolean && @square_array[row][4] = boolean
+  end
+
+  def paint_two_inner_columns?(boolean, row)
+    @square_array[row][1] = boolean && @square_array[row][3] = boolean
+  end
+
+  def paint_middle_column?(boolean, row)
+    @square_array[row][2] = boolean
   end
 end
