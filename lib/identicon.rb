@@ -84,7 +84,7 @@ class Identicon
   def initialize(data, size)
     @hash = Digest::MD5.hexdigest(data.to_s)
     @chars = @hash.scan(CHARS_REGEX)
-    @color = [0, 0, 0]
+    @color = COLORS[@hash.chars[11].to_sym]
     @size = size
     @pixel_ratio = (size / 6).round
     @image_size = @size - (@pixel_ratio / 1.5).round
@@ -174,9 +174,6 @@ class Identicon
         @square_array[i / 3][2] = h_to_b char
       end
     end
-    color = :a
-    0.upto(5) { color = chars.shift.to_sym }
-    @color = COLORS[color]
   end
 
   def h_to_b(value)
